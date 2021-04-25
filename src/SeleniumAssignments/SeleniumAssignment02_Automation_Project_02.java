@@ -8,6 +8,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import static java.lang.Thread.sleep;
 
@@ -31,10 +32,15 @@ public class SeleniumAssignment02_Automation_Project_02 {
         System.out.println("-_-_-_-_-_-_ Step 3     Verify the page title contains the word \"Used Cars\" _-_-_-_-_-_-");
 
 //4. Choose “Tesla” for  Make.
-        driver.findElement(By.name("make")).sendKeys("Tesla" +Keys.ENTER+Keys.TAB);
-        sleep(1000);
-        driver.findElement(By.name("make")).sendKeys("Tesla" +Keys.ENTER+Keys.TAB);
-        System.out.println("-_-_-_-_-_-_ Step 4     Choose \"Tesla\" for  Make _-_-_-_-_-_-");
+//        driver.findElement(By.name("make")).sendKeys("Tesla" +Keys.ENTER+Keys.TAB);
+//        sleep(1000);
+//        driver.findElement(By.name("make")).sendKeys("Tesla" +Keys.ENTER+Keys.TAB);
+//        System.out.println("-_-_-_-_-_-_ Step 4     Choose \"Tesla\" for  Make _-_-_-_-_-_-");
+
+        WebElement makeType = driver.findElement(By.name("make"));Thread.sleep(1000);
+        Select select = new Select(makeType);
+
+    select.selectByValue("Tesla");Thread.sleep(1000);
 
 //5. Verify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S, Model X).
 
