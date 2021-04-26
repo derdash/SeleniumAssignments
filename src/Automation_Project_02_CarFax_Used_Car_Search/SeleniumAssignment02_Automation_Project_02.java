@@ -1,4 +1,4 @@
-package SeleniumAssignments;
+package Automation_Project_02_CarFax_Used_Car_Search;
 
 import static java.lang.Thread.sleep;
 import org.openqa.selenium.*;
@@ -9,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
-import static java.lang.Thread.sleep;
 
 public class SeleniumAssignment02_Automation_Project_02 {
     public static void main(String[] args) throws InterruptedException {
@@ -126,10 +124,10 @@ public class SeleniumAssignment02_Automation_Project_02 {
 
 //16. Choose “Price - High to Low” option from Sort menu
        // driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("Price"+ Keys.ENTER+ Keys.TAB);
-        WebElement sortPrice  = driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']"));Thread.sleep(1000);
-        Select select16 = new Select(sortPrice);
+        WebElement sortBY  = driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']"));Thread.sleep(1000);
+        Select selectSortBY = new Select(sortBY);
 
-        select16.selectByValue("PRICE_DESC");Thread.sleep(2000);
+        selectSortBY.selectByValue("PRICE_DESC");Thread.sleep(2000);
 
         System.out.println("-_-_-_-_-_-_  Step 16    Choose \"Price - High to Low\" option from Sort menu_-_-_-_-_-_-");
 
@@ -145,9 +143,13 @@ public class SeleniumAssignment02_Automation_Project_02 {
         System.out.println("------- Step 17     Verify that the results are displayed from high to low price-------");
 
 //18  Choose “Mileage - Low to High” option from Sort menu
-        driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("m"+ Keys.ENTER+ Keys.TAB);
-        driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("m"+ Keys.ENTER+ Keys.TAB);
+        //driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("m"+ Keys.ENTER+ Keys.TAB);
+       // driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("m"+ Keys.ENTER+ Keys.TAB);
+
+        selectSortBY.selectByValue("MILEAGE_ASC");Thread.sleep(2000);
+
         System.out.println("------- Step 18     Choose \"Mileage - Low to High\" option from Sort menu-------");
+
 
 
 //19. Verify that the results are displayed from low to high mileage.
@@ -165,7 +167,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
 
 //20. Choose “Year - New to Old” option from Sort menu
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("Y"+ Keys.ENTER + Keys.TAB);
+        selectSortBY.selectByValue("YEAR_DESC");Thread.sleep(2000);
         System.out.println("------- Step 20     Choose \"Year - New to Old\" option from Sort menu-------");
 
 //21. Verify that the results are displayed from new to old year.
