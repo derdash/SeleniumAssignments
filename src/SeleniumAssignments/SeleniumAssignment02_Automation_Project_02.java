@@ -125,7 +125,12 @@ public class SeleniumAssignment02_Automation_Project_02 {
         System.out.println("-_-_-_-_-_-_  Step 15    Get the price of each result and save them into a list in the order of their appearance _-_-_-_-_-_-");
 
 //16. Choose “Price - High to Low” option from Sort menu
-        driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("Price"+ Keys.ENTER+ Keys.TAB);
+       // driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']")).sendKeys("Price"+ Keys.ENTER+ Keys.TAB);
+        WebElement sortPrice  = driver.findElement(By.xpath("//select[@class='srp-header-sort-select ']"));Thread.sleep(1000);
+        Select select16 = new Select(sortPrice);
+
+        select16.selectByValue("PRICE_DESC");Thread.sleep(2000);
+
         System.out.println("-_-_-_-_-_-_  Step 16    Choose \"Price - High to Low\" option from Sort menu_-_-_-_-_-_-");
 
 //17. Verify that the results are displayed from high to low price.
