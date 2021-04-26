@@ -1,12 +1,10 @@
 package Automation_Project_01_Creating_Web_Order;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Automation_Project_01_Creating_Web_Order {
 
@@ -25,6 +23,7 @@ public class Automation_Project_01_Creating_Web_Order {
 // 3.a Login using username Tester and password test
         System.out.println("***** Step 3.a Login using username Tester ");
         driver.findElement(By.name("ctl00$MainContent$username")).sendKeys("Tester");
+
 // 3.b Login using username Tester and password test
         System.out.println("***** Step 3.b Login using password test and enter ");
         // driver.findElement(By.name("ctl00$MainContent$password")).sendKeys("test");
@@ -44,7 +43,6 @@ public class Automation_Project_01_Creating_Web_Order {
         String random1_100 = "" + r;
         driver.findElement(By.name("ctl00$MainContent$fmwOrder$txtQuantity")).sendKeys(random1_100);
         System.out.println(r);           // just printing out for fun
-        Thread.sleep(1000);
 
 // 6. Enter Customer Name as  random String of uppercase and lowercase letters with length 5 for First and Last name:
        //  For example sdTFs Hsfsa
@@ -62,11 +60,11 @@ public class Automation_Project_01_Creating_Web_Order {
             } }
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_txtName")).sendKeys(randonName + " " + randonLastName);
         System.out.println(randonName + " " + randonLastName); // just printing out for fu
-        Thread.sleep(2000);
 
 // 7. Enter street: 8607 Westwood Center Dr
         System.out.println("***** Step 7. Enter street: 8607 Westwood Center Dr");
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox2")).sendKeys("8607 Westwood Center Dr");
+        Thread.sleep(1000);
 
 // 8. Enter City: Vienna
         System.out.println("***** Step 8. Enter City: Vienna");
@@ -81,21 +79,38 @@ public class Automation_Project_01_Creating_Web_Order {
         int y = (int)(10000+ (Math.random() * 90_000));String random5 = "" + y;
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys(random5);
         System.out.println(y); // just printing out for fu
-        Thread.sleep(1000);
+
 
 // 11. Select any card type. Every time your code should select a different type.
         System.out.println("***** Step 11. Select any card type. Every time your code should select a different type.");
-        int cT = (int)(Math.random()*3);
-        if  (cT==0){
-            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_0")).click();
-        }else if (cT==1) {
-            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1")).click();
-        }else {
-            driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_2")).click();
-        }
+       int cT = (int)(Math.random()*3);
+       // Version a with id
+       // Version b with CssSelector
+       // 2nd Version of Step 11  (line 104-111) getting list of webElements, clicking by index.
+//        if  (cT==0){
+//        a. //    driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_0")).click();
+//        b. //    driver.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_cardList_0")).click();
+//        }else if (cT==1) {
+//         a. //   driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1")).click();
+//         b. //   driver.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_cardList_1")).click();
+//        }else {
+//         a. //   driver.findElement(By.id("ctl00_MainContent_fmwOrder_cardList_2")).click();
+//         b. //   driver.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_cardList_2")).click();
+//        }
         System.out.println(cT); // just printing out for fu
         Thread.sleep(1000);
+       // Step 11 version II
 
+        List<WebElement> radioButtons = driver.findElements(By.xpath("//input[@type='radio']"));
+        if  (cT==0){
+            radioButtons.get(0).click();
+        }else if (cT==1) {
+            radioButtons.get(1).click();
+        }else{
+            radioButtons.get(2).click();
+        }
+
+        Thread.sleep(1000);
 // 12. Enter a card number:
         System.out.println("***** Step 12. Enter a card number:");
         int singleRandom = (int) (Math.random() * 10);
@@ -117,8 +132,7 @@ public class Automation_Project_01_Creating_Web_Order {
         }else {
                     driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(amexCARD);
         }
-        System.out.println((cT==0) ? "Visa " + visaCARD : (cT==1) ? "Master " +masterCARD : "Amex " + amexCARD); //
-        Thread.sleep(1000);
+        System.out.println((cT==0) ? "Visa " + visaCARD : (cT==1) ? "Master " +masterCARD : "Amex " + amexCARD);
 
 // 13. Enter a valid expiration date (newer than the current date)
         System.out.println("***** Step 13. Enter a valid expiration date (newer than the current date)");
@@ -127,18 +141,15 @@ public class Automation_Project_01_Creating_Web_Order {
         String dateNew = dtf.format(now);
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys(dateNew);
         System.out.println(dateNew);
-        Thread.sleep(1000);
 
 // 14. Click on Process
         System.out.println("***** Step 14. Click on Process");
         driver.findElement(By.id("ctl00_MainContent_fmwOrder_InsertButton")).click();
         System.out.println("Click Process");
-        Thread.sleep(1000);
 
 // 15. Verify that the page contains text “New order has been successfully added”.
         System.out.println("***** Step 15. Verify that the page contains text “New order has been successfully added”.");
         String verifytext = "New order has been successfully added.";
-        System.out.println("Except"verifytext);
         Thread.sleep(1000);
         System.out.println  (driver.getPageSource().contains(verifytext)? "Pass, page contains \"" + verifytext + "\"": "Fail, does not page contains \"" + verifytext + "\"");
 
