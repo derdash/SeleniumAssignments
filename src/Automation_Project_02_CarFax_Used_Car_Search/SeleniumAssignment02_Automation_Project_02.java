@@ -75,11 +75,21 @@ public class SeleniumAssignment02_Automation_Project_02 {
         System.out.println("-_-_-_-_-_-_ Step 8     Verify that the page has \"Step 2 – Show me cars with\" text _-_-_-_-_-_-");
 
 //9. Click on all 4 checkboxes.
-        driver.findElement(By.xpath("//div[@class= 'noAccident']")).click();
-        driver.findElement(By.xpath("//div[@class= 'owner1']")).click();
-        driver.findElement(By.xpath("//div[@class= 'personal']")).click();
-        driver.findElement(By.xpath("//*[@id=\"react-app-main\"]/div/div[2]/div/div/main/div[3]/div[1]/div/div[2]/ul/li[4]/label/span[2]")).click();
         System.out.println("-_-_-_-_-_-_ Step 9     Click on all 4 checkboxes_-_-_-_-_-_-");
+
+        //  driver.findElement(By.xpath("//div[@class= 'noAccident']")).click();
+        //  driver.findElement(By.xpath("//div[@class= 'owner1']")).click();
+        //  driver.findElement(By.xpath("//div[@class= 'personal']")).click();
+        //  driver.findElement(By.xpath("//*[@id=\"react-app-main\"]/div/div[2]/div/div/main/div[3]/div[1]/div/div[2]/ul/li[4]/label/span[2]")).click();
+
+        //   Version 2nd      base on --April 14 class -Radio button and Check box
+        List<WebElement> checkboxes = driver.findElements(By.xpath("//span[@role='checkbox']"));
+
+        for (WebElement e: checkboxes) {
+            if(!e.isSelected())
+                e.click();
+        }
+
 //10. Save the result of “Show me X Results” button to a variable. In this case it is 6.
         int result =  Integer.parseInt( driver.findElement(By.xpath("//span[@class='totalRecordsText']")).getText() ) ;
         System.out.println("Total result is: " + result);
