@@ -27,7 +27,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
 
 //3. Verify the page title contains the word “Used Cars”
         System.out.println("***** Step 3     Verify the page title contains the word \"Used Cars\"");
-        System.out.println( driver.getTitle().contains("Used Cars") ? "PASS, The page title contains the word \"Used Cars\"" : "FAIL");
+        System.out.println( driver.getTitle().contains(  "Used Cars") ? "\t\t\t\tPASS, The page title contains the word \"Used Cars\"" : "\t\t\t\tFAIL");
 
 //4. Choose “Tesla” for  Make.
         System.out.println("***** Step 4     Choose \"Tesla\" for  Make");
@@ -41,24 +41,24 @@ public class SeleniumAssignment02_Automation_Project_02 {
         select.selectByValue("Tesla");
         Thread.sleep(1000);
 
-//5. Verify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S, Model X).
+//5. Verify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S , Model X).
         System.out.println("***** Step 5     Verify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S, Model X)");
 //5.a Choosing "Select Model"
         driver.findElement(By.name("model")).sendKeys("Select Model" +Keys.ENTER);
 //5.b Getting text Verify
         String currentTeslaModels = driver.findElement(By.xpath("//*[@id=\"makeModelPanel\"]/form/div[2]/div/select/optgroup[1]")).getText();
 
-        String model3 = driver.findElement(By.xpath("//option[@id= 'model_Model-3']")).getText();
-        String modelS = driver.findElement(By.xpath("//option[@id= 'model_Model-S']")).getText();
-        String modelX = driver.findElement(By.xpath("//option[@id='model_Model-X']")).getText();
+        String model3 = "Model 3";
+        String modelS = "Model S";
+        String modelX = "Model X";
 
-        System.out.println("Verify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S, Model X).");
+        System.out.println("\t\t\t\tVerify that the Select Model dropdown box contains 3 current Tesla models - (Model 3, Model S, Model X).");
         if (currentTeslaModels.contains(model3)){
-            System.out.println("Pass, dropdown box contains " + model3);
+            System.out.println("\t\t\t\tPass, dropdown box contains " + model3);
         }if (currentTeslaModels.contains(modelS)) {
-            System.out.println("Pass, dropdown box contains " + modelS);
+            System.out.println("\t\t\t\tPass, dropdown box contains " + modelS);
         }if (currentTeslaModels.contains(modelX)) {
-            System.out.println("Pass, dropdown box contains " + modelX);
+            System.out.println("\t\t\t\tPass, dropdown box contains " + modelX);
         }
 
 
@@ -72,7 +72,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
 
 //8. Verify that the page has “Step 2 – Show me cars with” text
         System.out.println("***** Step 8     Verify that the page has \"Step 2 – Show me cars with\" text");
-        System.out.println(   driver.getPageSource().contains("Step 2 - Show me cars with")?"Pass, he page has \"Step 2 – Show me cars with\" text" :""  );
+        System.out.println(   driver.getPageSource().contains("Step 2 - Show me cars with")?"\t\t\t\tPass, he page has \"Step 2 – Show me cars with\" text" :"\t\t\t\tFail"  );
 
 //9. Click on all 4 checkboxes.
         System.out.println("***** Step 9     Click on all 4 checkboxes");
@@ -90,7 +90,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
 //10. Save the result of “Show me X Results” button to a variable. In this case it is 6.
         System.out.println("***** Step 10     Save the result of \"Show me X Results\" button to a variable. In this case it is 6");
         int result =  Integer.parseInt( driver.findElement(By.xpath("//span[@class='totalRecordsText']")).getText() ) ;
-        System.out.println("Total result is: " + result);
+        System.out.println("\t\t\t\tTotal result is: " + result);
 
 //11. Click on “Show me x Results” button.
         System.out.println("***** Step 11     Click on \"Show me x Results\" button.");
@@ -99,7 +99,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
 //12. On the next page, verify that the results page has the same number of results as indicated in Step 10 by extracting the number and comparing the result
         System.out.println("***** Step 12     On the next page, verify that the results page has the same number of results as indicated in Step 10 by extracting the number and comparing the result");
         int resultConfirm = Integer.parseInt(  driver.findElement(By.xpath("//span[@id='totalResultCount']")).getText());
-        System.out.println((resultConfirm==result)?"Pass, results page has the same number of results as indicated in Step 10": "Fail" + resultConfirm);
+        System.out.println((resultConfirm==result)?"\t\t\t\tPass, results page has the same number of results as indicated in Step 10": "\t\t\t\tFail" + resultConfirm);
 
 //13. Verify the results also by getting the actual number of results displayed in the page with the number in the Step 10. For this step get the count the number of WebElements related to each result.
         System.out.println("***** Step 13     Verify the results also by getting the actual number of results displayed in the page with the number in the Step 10. For this step get the count the number of WebElements related to each result");
@@ -108,7 +108,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         for (WebElement el13: elements) {
             c13++ ;
         }
-        System.out.println((result==c13)?"Pass, Verify the results also by getting the actual number of results displayed in the page with the number in the Step 10":"Fail");
+        System.out.println((result==c13)?"\t\t\t\tPass, Verify the results also by getting the actual number of results displayed in the page with the number in the Step 10":"\t\t\t\tFail");
 
 //14. Verify that each result contains String “Tesla Model S”.
         System.out.println("***** Step 14     Verify that each result contains String \"Tesla Model S\"");
@@ -117,7 +117,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         List<WebElement> elements14  = driver.findElements(By.xpath("//h4[@class='srp-list-item-basic-info-model']"));
         for (WebElement el14: elements14) {
             c14++;
-            System.out.println(el14.getText().contains(cR)?"Pass, contains "+ cR +" "+ c14 +" times":"Fail");
+            System.out.println(el14.getText().contains(cR)?"\t\t\t\tPass, contains "+ cR +" "+ c14 +" times":"\t\t\t\tFail");
         }
 
 
@@ -128,7 +128,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         for (WebElement el15: elements15) {
             actualList15.add(el15.getText().substring(7));
         }
-        System.out.println(actualList15);
+        System.out.print("\t\t\t\t");System.out.println(actualList15);
 
 //16. Choose “Price - High to Low” option from Sort menu
         System.out.println("***** Step 16     Choose \"Price - High to Low\" option from Sort menu");
@@ -146,7 +146,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         for (WebElement el17: elements17) {
             actualList17.add(el17.getText().substring(7));
         }
-        System.out.println(actualList17);
+        System.out.print("\t\t\t\t"); System.out.println(actualList17);
 
 
 //18  Choose “Mileage - Low to High” option from Sort menu
@@ -163,7 +163,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         for (WebElement e19: elements19) {
             actualList19.add( e19.getText().substring(9,  (e19.getText().indexOf('m')))     );
         }
-        System.out.println(actualList19);
+        System.out.print("\t\t\t\t");  System.out.println(actualList19);
 
 
 //20. Choose “Year - New to Old” option from Sort menu
@@ -177,7 +177,7 @@ public class SeleniumAssignment02_Automation_Project_02 {
         List<String> actualList21 = new ArrayList<>();
         List<WebElement> elements21 = driver.findElements(By.xpath("//article//div//h4[@class='srp-list-item-basic-info-model']"));
         for (WebElement e21: elements21) {
-            System.out.println(e21.getText());
+            System.out.print("\t\t\t\t");System.out.println(e21.getText());
         }    }   }
 
 
